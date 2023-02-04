@@ -1,13 +1,20 @@
-﻿using System;
+﻿using robert_baxter_inventory_system.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace robert_baxter_inventory_system
 {
     internal static class Program
     {
+        // creating a public static mainlayout to control a single source 
+        public static MainLayout MainLayout;
+
+        public static void ResetLayout()
+        {
+            MainLayout.Refresh();
+            MainLayout.Show();
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +23,8 @@ namespace robert_baxter_inventory_system
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            MainLayout = new MainLayout();
+            Application.Run(MainLayout);
         }
     }
 }

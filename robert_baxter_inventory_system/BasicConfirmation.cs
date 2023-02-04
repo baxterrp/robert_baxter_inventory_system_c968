@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace robert_baxter_inventory_system
 {
-    public partial class Form1 : Form
+    public partial class BasicConfirmation : Form
     {
-        public Form1()
+        public BasicConfirmation(string message = "Press okay to close")
         {
             InitializeComponent();
+
+            Message.Text = message;
+        }
+
+        private void ConfirmationCloseButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
