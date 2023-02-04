@@ -63,6 +63,27 @@ namespace robert_baxter_inventory_system
             Close();
         }
 
+        private void ProductSearchButton_Click(object sender, EventArgs e)
+        {
+            var searchValue = ProductSearchTextField.Text;
+
+            // when no value provided, show all
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                _productsBindingSource.DataSource = Inventory.Products;
+            }
+            // if integer value provided, lookup by id
+            else if (int.TryParse(searchValue, out int intValue))
+            {
+                _productsBindingSource.DataSource = _inventory.LookupProduct(intValue);
+            }
+            // otherwise search by name
+            else
+            {
+                _productsBindingSource.DataSource = _inventory.SearchProducts(searchValue);
+            }
+        }
+
         private void PartSearchButtonClick(object sender, System.EventArgs e)
         {
             var searchValue = PartSearchTextField.Text;
@@ -195,5 +216,6 @@ namespace robert_baxter_inventory_system
             return _inventory.RemoveProduct(product.ProductId);
         }
         #endregion
+
     }
 }

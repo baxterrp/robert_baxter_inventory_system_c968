@@ -41,8 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.PartSearchTextField = new System.Windows.Forms.TextBox();
             this.PartSearchButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.ProductSearchButton = new System.Windows.Forms.Button();
+            this.ProductSearchTextField = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.ModifyPartButton = new System.Windows.Forms.Button();
@@ -178,21 +178,22 @@
             this.PartSearchButton.UseVisualStyleBackColor = true;
             this.PartSearchButton.Click += new System.EventHandler(this.PartSearchButtonClick);
             // 
-            // button1
+            // ProductSearchButton
             // 
-            this.button1.Location = new System.Drawing.Point(858, 61);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 20);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ProductSearchButton.Location = new System.Drawing.Point(858, 61);
+            this.ProductSearchButton.Name = "ProductSearchButton";
+            this.ProductSearchButton.Size = new System.Drawing.Size(75, 20);
+            this.ProductSearchButton.TabIndex = 8;
+            this.ProductSearchButton.Text = "Search";
+            this.ProductSearchButton.UseVisualStyleBackColor = true;
+            this.ProductSearchButton.Click += new System.EventHandler(this.ProductSearchButton_Click);
             // 
-            // textBox2
+            // ProductSearchTextField
             // 
-            this.textBox2.Location = new System.Drawing.Point(950, 61);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 20);
-            this.textBox2.TabIndex = 7;
+            this.ProductSearchTextField.Location = new System.Drawing.Point(950, 61);
+            this.ProductSearchTextField.Name = "ProductSearchTextField";
+            this.ProductSearchTextField.Size = new System.Drawing.Size(185, 20);
+            this.ProductSearchTextField.TabIndex = 7;
             // 
             // button2
             // 
@@ -276,8 +277,8 @@
             this.Controls.Add(this.ModifyPartButton);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.ProductSearchButton);
+            this.Controls.Add(this.ProductSearchTextField);
             this.Controls.Add(this.PartSearchButton);
             this.Controls.Add(this.PartSearchTextField);
             this.Controls.Add(this.label3);
@@ -304,8 +305,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox PartSearchTextField;
         private System.Windows.Forms.Button PartSearchButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button ProductSearchButton;
+        private System.Windows.Forms.TextBox ProductSearchTextField;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button ModifyPartButton;

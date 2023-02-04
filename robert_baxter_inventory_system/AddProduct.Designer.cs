@@ -52,10 +52,10 @@
             this.AssociatedPartPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AssociatedPartMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AssociatedPartMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.PartSearchTextField = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.PartSearchButton = new System.Windows.Forms.Button();
             this.AddPartToProductButton = new System.Windows.Forms.Button();
             this.DeleteAssociatedPartButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -221,8 +221,6 @@
             // 
             // PartsAssociatedToProduct
             // 
-            this.PartsAssociatedToProduct.ReadOnly = true;
-            this.PartsAssociatedToProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PartsAssociatedToProduct.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PartsAssociatedToProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.PartsAssociatedToProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -235,6 +233,8 @@
             this.AssociatedPartMax});
             this.PartsAssociatedToProduct.Location = new System.Drawing.Point(297, 307);
             this.PartsAssociatedToProduct.Name = "PartsAssociatedToProduct";
+            this.PartsAssociatedToProduct.ReadOnly = true;
+            this.PartsAssociatedToProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PartsAssociatedToProduct.Size = new System.Drawing.Size(462, 150);
             this.PartsAssociatedToProduct.TabIndex = 15;
             // 
@@ -243,44 +243,49 @@
             this.AssociaterdPartId.DataPropertyName = "PartId";
             this.AssociaterdPartId.HeaderText = "Part ID";
             this.AssociaterdPartId.Name = "AssociaterdPartId";
+            this.AssociaterdPartId.ReadOnly = true;
             // 
             // AssociatedPartName
             // 
             this.AssociatedPartName.DataPropertyName = "Name";
             this.AssociatedPartName.HeaderText = "Name";
             this.AssociatedPartName.Name = "AssociatedPartName";
+            this.AssociatedPartName.ReadOnly = true;
             // 
             // AssociatedInStock
             // 
             this.AssociatedInStock.DataPropertyName = "InStock";
             this.AssociatedInStock.HeaderText = "Inventory";
             this.AssociatedInStock.Name = "AssociatedInStock";
+            this.AssociatedInStock.ReadOnly = true;
             // 
             // AssociatedPartPrice
             // 
             this.AssociatedPartPrice.DataPropertyName = "Price";
             this.AssociatedPartPrice.HeaderText = "Price";
             this.AssociatedPartPrice.Name = "AssociatedPartPrice";
+            this.AssociatedPartPrice.ReadOnly = true;
             // 
             // AssociatedPartMin
             // 
             this.AssociatedPartMin.DataPropertyName = "Min";
             this.AssociatedPartMin.HeaderText = "Min";
             this.AssociatedPartMin.Name = "AssociatedPartMin";
+            this.AssociatedPartMin.ReadOnly = true;
             // 
             // AssociatedPartMax
             // 
             this.AssociatedPartMax.DataPropertyName = "Max";
             this.AssociatedPartMax.HeaderText = "Max";
             this.AssociatedPartMax.Name = "AssociatedPartMax";
+            this.AssociatedPartMax.ReadOnly = true;
             // 
-            // textBox7
+            // PartSearchTextField
             // 
-            this.textBox7.Location = new System.Drawing.Point(588, 35);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(171, 20);
-            this.textBox7.TabIndex = 16;
+            this.PartSearchTextField.Location = new System.Drawing.Point(588, 35);
+            this.PartSearchTextField.Name = "PartSearchTextField";
+            this.PartSearchTextField.Size = new System.Drawing.Size(171, 20);
+            this.PartSearchTextField.TabIndex = 16;
             // 
             // label8
             // 
@@ -300,14 +305,15 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Parts Associated with this Product";
             // 
-            // button1
+            // PartSearchButton
             // 
-            this.button1.Location = new System.Drawing.Point(507, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.PartSearchButton.Location = new System.Drawing.Point(507, 33);
+            this.PartSearchButton.Name = "PartSearchButton";
+            this.PartSearchButton.Size = new System.Drawing.Size(75, 23);
+            this.PartSearchButton.TabIndex = 19;
+            this.PartSearchButton.Text = "Search";
+            this.PartSearchButton.UseVisualStyleBackColor = true;
+            this.PartSearchButton.Click += new System.EventHandler(this.ProductSearch_Click);
             // 
             // AddPartToProductButton
             // 
@@ -358,10 +364,10 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.DeleteAssociatedPartButton);
             this.Controls.Add(this.AddPartToProductButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.PartSearchButton);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.PartSearchTextField);
             this.Controls.Add(this.PartsAssociatedToProduct);
             this.Controls.Add(this.AllPartsDisplay);
             this.Controls.Add(this.ProductMinInput);
@@ -404,10 +410,10 @@
         private System.Windows.Forms.TextBox ProductMinInput;
         private System.Windows.Forms.DataGridView AllPartsDisplay;
         private System.Windows.Forms.DataGridView PartsAssociatedToProduct;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox PartSearchTextField;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button PartSearchButton;
         private System.Windows.Forms.Button AddPartToProductButton;
         private System.Windows.Forms.Button DeleteAssociatedPartButton;
         private System.Windows.Forms.Button button4;

@@ -8,6 +8,7 @@ namespace robert_baxter_inventory_system.Models.Interfaces
         void AddProduct(Product product);
         bool RemoveProduct(int productId);
         Product LookupProduct(int productId);
+        List<Product> SearchProducts(string query);
         void UpdateProduct(int productId, Product product);
 
         // part behavior

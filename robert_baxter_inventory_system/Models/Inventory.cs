@@ -8,7 +8,7 @@ namespace robert_baxter_inventory_system.Models
     public class Inventory : IInventory
     {
         public static List<int> ProductIds { get; set; } = new List<int> { 1, 2 };
-        public static List<int> PartIds { get; set; } = new List<int> { 1, 2, 3};
+        public static List<int> PartIds { get; set; } = new List<int> { 1, 2, 3 };
 
         public static List<Product> Products { get; } = new List<Product>
         {
@@ -32,7 +32,7 @@ namespace robert_baxter_inventory_system.Models
             },
         };
 
-        public static List<Part> AllParts { get; set;  } = new List<Part>
+        public static List<Part> AllParts { get; set; } = new List<Part>
         {
             new InHouse
             {
@@ -84,18 +84,23 @@ namespace robert_baxter_inventory_system.Models
 
         public bool DeletePart(Part part)
         {
-            var response =  AllParts.Remove(part);
+            var response = AllParts.Remove(part);
             return response;
         }
 
         public Part LookupPart(int partId) => AllParts.FirstOrDefault(part => part.PartId == partId);
 
-        public List<Part> SearchParts(string query) => 
+        public List<Part> SearchParts(string query) =>
             AllParts
                 .Where(part => part.Name.ToLower().Contains(query.ToLower()))
                 .ToList();
 
         public Product LookupProduct(int productId) => Products.FirstOrDefault(product => product.ProductId == productId);
+
+        public List<Product> SearchProducts(string query) =>
+            Products
+                .Where(product => product.Name.ToLower().Contains(query.ToLower()))
+                .ToList();
 
         public bool RemoveProduct(int productId)
         {
@@ -110,7 +115,7 @@ namespace robert_baxter_inventory_system.Models
             partToUpdate.Price = part.Price;
             partToUpdate.Min = part.Min;
             partToUpdate.Max = part.Max;
-            partToUpdate.InStock= part.InStock;
+            partToUpdate.InStock = part.InStock;
         }
 
         public void UpdateProduct(int productId, Product product)

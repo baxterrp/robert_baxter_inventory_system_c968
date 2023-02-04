@@ -195,5 +195,26 @@ namespace robert_baxter_inventory_system
             _tempDeletedParts.Add(part);
             return _selectedProduct.AssociatedParts.Remove(part);
         }
+
+        private void ProductSearch_Click(object sender, System.EventArgs e)
+        {
+            var searchValue = PartSearchTextField.Text;
+
+            // when no value provided, show all
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                _partsBindingSource.DataSource = Inventory.AllParts;
+            }
+            // if integer value provided, lookup by id
+            else if (int.TryParse(searchValue, out int intValue))
+            {
+                _partsBindingSource.DataSource = _inventory.LookupPart(intValue);
+            }
+            // otherwise search by name
+            else
+            {
+                _partsBindingSource.DataSource = _inventory.SearchParts(searchValue);
+            }
+        }
     }
 }
