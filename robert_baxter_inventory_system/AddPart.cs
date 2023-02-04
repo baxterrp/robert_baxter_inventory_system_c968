@@ -145,7 +145,9 @@ namespace robert_baxter_inventory_system
             if (InHouseRadioOption.Checked)
             {
                 UniquePartDescripter.Text = "Machine ID";
-                UniquePartValue.BackColor = !int.TryParse(UniquePartValue.Text, out int _) ? Color.Salmon : Color.White;
+                _partValidation.UniqueValueIsValid = int.TryParse(UniquePartValue.Text, out int _);
+                UniquePartValue.BackColor = _partValidation.UniqueValueIsValid ? Color.White : Color.Salmon;
+                PartSaveButton.Enabled = _partValidation.CanSave();
             }
         }
 
@@ -154,7 +156,9 @@ namespace robert_baxter_inventory_system
             if (OutsourcedRadioOption.Checked)
             {
                 UniquePartDescripter.Text = "Company Name";
-                UniquePartValue.BackColor = string.IsNullOrWhiteSpace(UniquePartValue.Text) ? Color.Salmon : Color.White;
+                _partValidation.UniqueValueIsValid = !string.IsNullOrWhiteSpace(UniquePartValue.Text);
+                UniquePartValue.BackColor = _partValidation.UniqueValueIsValid ? Color.White : Color.Salmon;
+                PartSaveButton.Enabled = _partValidation.CanSave();
             }
         }
 
