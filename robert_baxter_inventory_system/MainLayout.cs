@@ -84,6 +84,28 @@ namespace robert_baxter_inventory_system
             }
         }
 
+        public override void Refresh()
+        {
+            PartsDisplay.DataSource = null;
+            ProductsDisplay.DataSource = null;
+
+            _partsBindingSource.DataSource = Inventory.AllParts;
+            _productsBindingSource.DataSource = Inventory.Products;
+
+            PartsDisplay.DataSource = _partsBindingSource;
+            ProductsDisplay.DataSource = _productsBindingSource;
+
+            PartsDisplay.Refresh();
+            ProductsDisplay.Refresh();
+        }
+
+        private void AddProductButton_Click(object sender, System.EventArgs e)
+        {
+            Hide();
+            new AddProductLayout().Show();
+        }
+
+        #region Modify
         private void ModifyPartButtonClick(object sender, System.EventArgs e)
         {
             if (PartsDisplay.SelectedRows.Count > 0)
@@ -103,6 +125,25 @@ namespace robert_baxter_inventory_system
             }
         }
 
+        private void ModifyProductButton_Click(object sender, System.EventArgs e)
+        {
+            if (ProductsDisplay.SelectedRows.Count > 0)
+            {
+                var rowIndex = ProductsDisplay.CurrentCell.RowIndex;
+                _selectedProduct = Inventory.Products.ElementAt(rowIndex);
+
+                new AddProductLayout(_selectedProduct).Show();
+            }
+            else
+            {
+                // no product selected, show the dialog
+                new BasicConfirmation("Please select a product to continue").Show();
+            }
+        }
+
+        #endregion
+
+        #region Delete
         private void DeletePartButtonClick(object sender, EventArgs e)
         {
             if (PartsDisplay.SelectedRows.Count > 0)
@@ -132,35 +173,14 @@ namespace robert_baxter_inventory_system
             return _inventory.DeletePart(part);
         }
 
-        public override void Refresh()
-        {
-            PartsDisplay.DataSource = null;
-            ProductsDisplay.DataSource = null;
-
-            _partsBindingSource.DataSource = Inventory.AllParts;
-            _productsBindingSource.DataSource = Inventory.Products;
-
-            PartsDisplay.DataSource = _partsBindingSource;
-            ProductsDisplay.DataSource = _productsBindingSource;
-
-            PartsDisplay.Refresh();
-            ProductsDisplay.Refresh();
-        }
-
-        private void AddProductButton_Click(object sender, System.EventArgs e)
-        {
-            Hide();
-            new AddProductLayout().Show();
-        }
-
-        private void ModifyProductButton_Click(object sender, System.EventArgs e)
+        private void DeleteProductButton_Click(object sender, EventArgs e)
         {
             if (ProductsDisplay.SelectedRows.Count > 0)
             {
                 var rowIndex = ProductsDisplay.CurrentCell.RowIndex;
                 _selectedProduct = Inventory.Products.ElementAt(rowIndex);
 
-                new AddProductLayout(_selectedProduct).Show();
+                new DeleteConfirm(nameof(Part).ToLower(), DeleteProductAction).Show();
             }
             else
             {
@@ -168,5 +188,12 @@ namespace robert_baxter_inventory_system
                 new BasicConfirmation("Please select a product to continue").Show();
             }
         }
+
+        private bool DeleteProductAction()
+        {
+            var product = _inventory.LookupProduct(_selectedProduct.ProductId);
+            return _inventory.RemoveProduct(product.ProductId);
+        }
+        #endregion
     }
 }

@@ -44,7 +44,7 @@
             // 
             // CancelDelete
             // 
-            this.CancelDelete.Location = new System.Drawing.Point(149, 61);
+            this.CancelDelete.Location = new System.Drawing.Point(234, 61);
             this.CancelDelete.Name = "CancelDelete";
             this.CancelDelete.Size = new System.Drawing.Size(75, 23);
             this.CancelDelete.TabIndex = 1;
@@ -55,7 +55,7 @@
             // ConfirmDelete
             // 
             this.ConfirmDelete.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ConfirmDelete.Location = new System.Drawing.Point(68, 61);
+            this.ConfirmDelete.Location = new System.Drawing.Point(149, 61);
             this.ConfirmDelete.Name = "ConfirmDelete";
             this.ConfirmDelete.Size = new System.Drawing.Size(75, 23);
             this.ConfirmDelete.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(257, 96);
+            this.ClientSize = new System.Drawing.Size(332, 96);
             this.Controls.Add(this.ConfirmDelete);
             this.Controls.Add(this.CancelDelete);
             this.Controls.Add(this.DeleteConfirmationMessage);

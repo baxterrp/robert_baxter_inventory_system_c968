@@ -13,9 +13,18 @@ namespace robert_baxter_inventory_system
 
         private bool _isEditMode = false;
         private Product _selectedProduct;
+        private Validation _productValidation = new Validation
+        {
+            NameIsValid = true,
+            InventoryIsValid = true,
+            MaxIsValid = true,
+            MinIsValid = true,
+            PriceIsValid = true,
+        };
+
         private readonly Inventory _inventory;
 
-        // storing temporarily added or deleted parts to restore state of associated parts upon cancelation
+        // storing temporarily added or deleted parts to restore state of associated parts upon cancellation
         private List<Part> _tempAddedParts = new List<Part>();
         private List<Part> _tempDeletedParts = new List<Part>();
 
@@ -41,6 +50,11 @@ namespace robert_baxter_inventory_system
                 ProductMinInput.Text = _selectedProduct.Min.ToString();
                 ProductPriceInput.Text = _selectedProduct.Price.ToString();
             }
+            else
+            {
+                _productValidation.SetFalse();
+                SaveProductButton.Enabled = _productValidation.CanSave();
+            }
         }
 
         private void AllPartsDisplay_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -48,6 +62,7 @@ namespace robert_baxter_inventory_system
             AllPartsDisplay.ClearSelection();
         }
 
+        // restore state of parts depending on what is contained in temp lists
         private void CancelButton_Click(object sender, System.EventArgs e)
         {
             foreach (var part in _tempAddedParts)
@@ -67,27 +82,37 @@ namespace robert_baxter_inventory_system
 
         private void ProductNameInput_TextChanged(object sender, System.EventArgs e)
         {
-            ProductNameInput.BackColor = string.IsNullOrWhiteSpace(ProductNameInput.Text) ? Color.Salmon : Color.White;
+            _productValidation.NameIsValid = !string.IsNullOrWhiteSpace(ProductNameInput.Text);
+            ProductNameInput.BackColor = _productValidation.NameIsValid ? Color.White : Color.Salmon;
+            SaveProductButton.Enabled = _productValidation.CanSave();
         }
 
         private void ProductInventoryInput_TextChanged(object sender, System.EventArgs e)
         {
-            ProductInventoryInput.BackColor = !int.TryParse(ProductInventoryInput.Text, out int _) ? Color.Salmon : Color.White;
+            _productValidation.InventoryIsValid = int.TryParse(ProductInventoryInput.Text, out int _);
+            ProductInventoryInput.BackColor = _productValidation.InventoryIsValid ? Color.White : Color.Salmon;
+            SaveProductButton.Enabled = _productValidation.CanSave();
         }
 
         private void ProductPriceInput_TextChanged(object sender, System.EventArgs e)
         {
-            ProductPriceInput.BackColor = !decimal.TryParse(ProductPriceInput.Text, out decimal _) ? Color.Salmon : Color.White;
+            _productValidation.PriceIsValid = decimal.TryParse(ProductPriceInput.Text, out decimal _);
+            ProductPriceInput.BackColor = _productValidation.PriceIsValid ? Color.White : Color.Salmon;
+            SaveProductButton.Enabled = _productValidation.CanSave();
         }
 
         private void ProductMaxInput_TextChanged(object sender, System.EventArgs e)
         {
-            ProductMaxInput.BackColor = !int.TryParse(ProductMaxInput.Text, out int _) ? Color.Salmon : Color.White;
+            _productValidation.MaxIsValid = int.TryParse(ProductMaxInput.Text, out int _);
+            ProductMaxInput.BackColor = _productValidation.MaxIsValid ? Color.White : Color.Salmon;
+            SaveProductButton.Enabled = _productValidation.CanSave();
         }
 
         private void ProductMinInput_TextChanged(object sender, System.EventArgs e)
         {
-            ProductMinInput.BackColor = !int.TryParse(ProductMinInput.Text, out int _) ? Color.Salmon : Color.White;
+            _productValidation.MinIsValid = int.TryParse(ProductMinInput.Text, out int _);
+            ProductMinInput.BackColor = _productValidation.MinIsValid ? Color.White : Color.Salmon;
+            SaveProductButton.Enabled = _productValidation.CanSave();
         }
 
         private void SaveProductButton_Click(object sender, System.EventArgs e)
@@ -165,8 +190,9 @@ namespace robert_baxter_inventory_system
             if (_tempAddedParts.Contains(part))
             {
                 _tempAddedParts.Remove(part);
-                _tempDeletedParts.Add(part);
             }
+
+            _tempDeletedParts.Add(part);
             return _selectedProduct.AssociatedParts.Remove(part);
         }
     }

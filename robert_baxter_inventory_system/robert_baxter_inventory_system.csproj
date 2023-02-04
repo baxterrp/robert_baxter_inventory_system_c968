@@ -82,7 +82,9 @@
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Outsourced.cs" />
     <Compile Include="Models\Part.cs" />
+    <Compile Include="Models\PartValidation.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Validation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddPart.resx">

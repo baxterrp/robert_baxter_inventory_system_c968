@@ -38,7 +38,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.UniquePartDescripter = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.PartSaveButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.PartId = new System.Windows.Forms.TextBox();
             this.PartName = new System.Windows.Forms.TextBox();
@@ -146,15 +146,15 @@
             this.UniquePartDescripter.TabIndex = 9;
             this.UniquePartDescripter.Text = "Machine ID";
             // 
-            // button1
+            // PartSaveButton
             // 
-            this.button1.Location = new System.Drawing.Point(105, 303);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.SavePartClick);
+            this.PartSaveButton.Location = new System.Drawing.Point(105, 303);
+            this.PartSaveButton.Name = "PartSaveButton";
+            this.PartSaveButton.Size = new System.Drawing.Size(75, 23);
+            this.PartSaveButton.TabIndex = 10;
+            this.PartSaveButton.Text = "Save";
+            this.PartSaveButton.UseVisualStyleBackColor = true;
+            this.PartSaveButton.Click += new System.EventHandler(this.SavePartClick);
             // 
             // button2
             // 
@@ -241,7 +241,7 @@
             this.Controls.Add(this.PartName);
             this.Controls.Add(this.PartId);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.PartSaveButton);
             this.Controls.Add(this.UniquePartDescripter);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -272,7 +272,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label UniquePartDescripter;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button PartSaveButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox PartId;
         private System.Windows.Forms.TextBox PartName;

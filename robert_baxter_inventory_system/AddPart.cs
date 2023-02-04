@@ -9,6 +9,14 @@ namespace robert_baxter_inventory_system
     {
         private bool _isEditMode;
         private readonly Inventory _inventory;
+        private PartValidation _partValidation = new PartValidation
+        {
+            NameIsValid = true,
+            InventoryIsValid= true,
+            UniqueValueIsValid= true,
+            MaxIsValid = true,
+            MinIsValid = true,
+        };
 
         public AddPart(Part part = null)
         {
@@ -39,6 +47,13 @@ namespace robert_baxter_inventory_system
                         break;
                 }
             }
+            else
+            {
+                _partValidation.SetFalse();
+                _partValidation.UniqueValueIsValid = false;
+
+                PartSaveButton.Enabled = _partValidation.CanSave();
+            }
         }
 
         private void AddPartExitClick(object sender, EventArgs e)
@@ -55,6 +70,7 @@ namespace robert_baxter_inventory_system
             var max = int.Parse(PartMax.Text);
             var instock = int.Parse(PartInventoryCount.Text);
 
+            // restrictions based on min/max
             if (min > max)
             {
                 new BasicConfirmation("Your minimum exceeds your maximum").Show();
@@ -144,39 +160,52 @@ namespace robert_baxter_inventory_system
 
         private void PartName_TextChanged(object sender, EventArgs e)
         {
-            PartName.BackColor = string.IsNullOrWhiteSpace(PartName.Text) ? Color.Salmon : Color.White;
+            _partValidation.NameIsValid = !string.IsNullOrWhiteSpace(PartName.Text);
+            PartName.BackColor = _partValidation.NameIsValid ? Color.White : Color.Salmon;
+            PartSaveButton.Enabled = _partValidation.CanSave();
         }
 
         private void PartInventoryCount_TextChanged(object sender, EventArgs e)
         {
-            PartInventoryCount.BackColor = !int.TryParse(PartInventoryCount.Text, out int _) ? Color.Salmon : Color.White;
+            _partValidation.InventoryIsValid = int.TryParse(PartInventoryCount.Text, out int _);
+            PartInventoryCount.BackColor = _partValidation.InventoryIsValid ? Color.White : Color.Salmon;
+            PartSaveButton.Enabled = _partValidation.CanSave();
         }
 
         private void PartPrice_TextChanged(object sender, EventArgs e)
         {
-            PartPrice.BackColor = !decimal.TryParse(PartPrice.Text, out decimal _) ? Color.Salmon : Color.White;
+            _partValidation.PriceIsValid = decimal.TryParse(PartPrice.Text, out decimal _);
+            PartPrice.BackColor = _partValidation.PriceIsValid ? Color.White : Color.Salmon;
+            PartSaveButton.Enabled = _partValidation.CanSave();
         }
 
         private void PartMax_TextChanged(object sender, EventArgs e)
         {
-            PartMax.BackColor = !int.TryParse(PartMax.Text, out int _) ? Color.Salmon : Color.White;
+            _partValidation.MaxIsValid = int.TryParse(PartMax.Text, out int _);
+            PartMax.BackColor = _partValidation.MaxIsValid ? Color.White : Color.Salmon;
+            PartSaveButton.Enabled = _partValidation.CanSave();
         }
 
         private void PartMin_TextChanged(object sender, EventArgs e)
         {
-            PartMin.BackColor = !int.TryParse(PartMin.Text, out int _) ? Color.Salmon : Color.White;
+            _partValidation.MinIsValid = int.TryParse(PartMin.Text, out int _);
+            PartMin.BackColor = _partValidation.MinIsValid ? Color.White :Color.Salmon;
+            PartSaveButton.Enabled = _partValidation.CanSave();
         }
 
         private void UniquePartValue_TextChanged(object sender, EventArgs e)
         {
             if (InHouseRadioOption.Checked)
             {
-                UniquePartValue.BackColor = !int.TryParse(UniquePartValue.Text, out int _) ? Color.Salmon : Color.White;
+                _partValidation.UniqueValueIsValid = int.TryParse(UniquePartValue.Text, out int _);
             }
             else if (OutsourcedRadioOption.Checked)
             {
-                UniquePartValue.BackColor = string.IsNullOrWhiteSpace(UniquePartValue.Text) ? Color.Salmon : Color.White;
+                _partValidation.UniqueValueIsValid = !string.IsNullOrWhiteSpace(UniquePartValue.Text);
             }
+
+            UniquePartValue.BackColor = _partValidation.UniqueValueIsValid ? Color.White : Color.Salmon;
+            PartSaveButton.Enabled = _partValidation.CanSave();
         }
     }
 }

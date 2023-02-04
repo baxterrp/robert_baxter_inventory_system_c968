@@ -49,7 +49,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.ModifyProductButton = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.DeleteProductButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PartsDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsDisplay)).BeginInit();
             this.SuspendLayout();
@@ -254,14 +254,15 @@
             this.ModifyProductButton.UseVisualStyleBackColor = true;
             this.ModifyProductButton.Click += new System.EventHandler(this.ModifyProductButton_Click);
             // 
-            // button8
+            // DeleteProductButton
             // 
-            this.button8.Location = new System.Drawing.Point(1062, 416);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 35);
-            this.button8.TabIndex = 13;
-            this.button8.Text = "Delete";
-            this.button8.UseVisualStyleBackColor = true;
+            this.DeleteProductButton.Location = new System.Drawing.Point(1062, 416);
+            this.DeleteProductButton.Name = "DeleteProductButton";
+            this.DeleteProductButton.Size = new System.Drawing.Size(75, 35);
+            this.DeleteProductButton.TabIndex = 13;
+            this.DeleteProductButton.Text = "Delete";
+            this.DeleteProductButton.UseVisualStyleBackColor = true;
+            this.DeleteProductButton.Click += new System.EventHandler(this.DeleteProductButton_Click);
             // 
             // MainLayout
             // 
@@ -270,7 +271,7 @@
             this.ClientSize = new System.Drawing.Size(1164, 525);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.ModifyProductButton);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.DeleteProductButton);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.ModifyPartButton);
             this.Controls.Add(this.button3);
@@ -311,7 +312,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button ModifyProductButton;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button DeleteProductButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductInStock;
